@@ -67,7 +67,9 @@ for f in filenames:
         print(f)
 #
 
-count = len(submissions)
+#count = len(submissions)
+count = 8 # just to test
+
 m,n = get_grid_size(count, TARGET_ASPECT)
 
 names = [s['attribution'] for s in submissions]
@@ -76,19 +78,20 @@ order = np.argsort(names)
 #
 fig,ax = plt.subplots(m,n,
                       figsize=FIGSIZE, 
-                      constrained_layout=True,
                       gridspec_kw={'wspace': 0, 'hspace': 0}
                       )
 
 k = 0
-for o in order:
+for o in order[:count]:
     i = int(k//n)
     j = k%n
     print(k,i,j)
+    print(submissions[o]['attribution'])
     clean_ax(ax[i,j])
     plot_patch(submissions[o], ax[i,j])
     
     k += 1
 
+fig.tight_layout()
 fig.savefig('test.pdf')
 #fig.show()
