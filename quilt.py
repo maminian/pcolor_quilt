@@ -92,6 +92,12 @@ for o in order[:count]:
     
     k += 1
 
+# delete empty panels
+for _ in range(count,m*n):
+    i = int(k//n)
+    j = k%n
+    ax[i,j].remove()
+
 fig.tight_layout()
-fig.savefig('test.pdf')
+fig.savefig('test.png')
 #fig.show()
